@@ -1,0 +1,157 @@
+/* === YOUR NEW "OPTION 2" BRAND COLOR PALETTE === */
+:root {
+  /* "Option 2" Buddle Palette */
+  --color-buddle-orange: #FF6B2E;         /* Link & Gradient */
+  --color-buddle-yellow-orange: #FFC300; /* Gradient */
+  --color-buddle-green: #8EE000;         /* Highlight/Accent */
+  --color-buddle-yellow: #FDEE00;
+  --color-buddle-blue: #1E90FF;
+  --color-buddle-purple: #7B2CBF;
+
+  /* "Option 2" Theme Colors */
+  --color-background-white: #FFFFFF;
+  --color-text-dark-gray: #333333;
+  
+  /* --- MAPPING "OPTION 2" TO OLD VARIABLES --- */
+  /* This ensures existing custom CSS (like .hotspot) uses the new colors */
+  
+  /* Old primary colors, now mapped */
+  --color-primary-orange: var(--color-buddle-orange); /* #FF6B2E */
+  --color-primary-green: var(--color-buddle-green);   /* #8EE000 */
+  --color-primary-blue: var(--color-buddle-blue);    /* Fallback, not primary */
+  
+  /* Old semantic colors, now mapped */
+  --color-text-dark: var(--color-text-dark-gray);       /* #333333 */
+  --color-text-terracotta: var(--color-buddle-orange); /* #FF6B2E (New Link Color) */
+  --color-accent-gold: var(--color-buddle-green);       /* #8EE000 (New Highlight) */
+}
+/* =================================== */
+
+
+/*
+  Note: Most styling is handled by Tailwind CSS classes in the HTML.
+  This file contains only the custom CSS that was in the <style> tag.
+*/
+
+body {
+  font-family: 'inter', sans-serif;
+  /* UPDATED: Set default background and text colors from "Option 2" */
+  background-color: var(--color-background-white);
+  color: var(--color-text-dark);
+  
+  /* Smooth scrolling for anchor links */
+  scroll-behavior: smooth; 
+  
+  /* UPDATED: Subtle noise texture now uses new dark gray text color */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23333333' fill-opacity='0.02' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+h1, h2, h3, h4 {
+  font-family: 'baloo', sans-serif;
+  /* Color is set by text-base-text in Tailwind config */
+}
+
+/* Custom "hotspot" styles */
+.hotspot {
+  position: absolute;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  
+  /* UPDATED: Using new 'Buddle' orange color via variables */
+  border: 2px solid var(--color-primary-orange); 
+  color: var(--color-primary-blue); /* Using blue as a pop color from logo */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.hotspot:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.hotspot-popup {
+  display: none; /* Hidden by default */
+  position: absolute;
+  background-color: var(--color-background-white);
+
+  /* UPDATED: Using new 'Buddle' orange color via variable */
+  border: 2px solid var(--color-primary-orange);
+
+  padding: 1rem;
+  border-radius: 1.25rem; /* 2xl */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  width: 240px;
+  z-index: 20;
+  /* Animation 'fadeIn' is defined in Tailwind config */
+  animation: fadeIn 0.3s ease-out;
+}
+
+.hotspot-popup h4 {
+  font-family: 'baloo', sans-serif;
+
+  /* UPDATED: Using new 'Buddle' blue color via variable */
+  color: var(--color-primary-blue);
+
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.hotspot-popup p {
+  font-family: 'inter', sans-serif;
+  font-size: 0.875rem;
+
+  /* UPDATED: Using new dark gray text color via variable */
+  color: var(--color-text-dark); 
+
+  margin-bottom: 0;
+}
+
+/* Custom "playful" button hover */
+.btn-playful {
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.btn-playful:hover {
+  transform: scale(1.05) rotate(-2deg);
+}
+.btn-playful:active {
+  transform: scale(0.98) rotate(0deg);
+}
+
+/* Mobile nav styles */
+#mobile-menu {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Section scroll padding for sticky header */
+section[id] {
+  scroll-margin-top: 80px; 
+}
+
+/* FAQ Accordion specific styles */
+.faq-toggle svg.rotate-0 {
+  transform: rotate(0deg);
+}
+.faq-toggle.active svg {
+  transform: rotate(180deg);
+}
+
+.faq-content {
+  /* Tailwind's `max-h-0` and `overflow-hidden` will handle the collapse/expand */
+  /* Add transition for smooth animation for max-height */
+  transition: max-height 0.3s ease-out; 
+}
+
+/* Additional style for footer to ensure proper scroll target for #footer */
+#footer {
+  scroll-margin-top: 80px; /* Adjust for sticky header height */
+}

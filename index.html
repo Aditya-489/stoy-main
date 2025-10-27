@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco-Tech Toys - Smart, Sustainable Play</title>
+    
+    <!-- 1. Tailwind CSS CDN --><script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 2. Google Fonts --><link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- 3. Custom Tailwind Configuration --><!-- This MUST be in the HTML head, after the CDN script --><script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    'baloo': ['"Baloo 2"', 'sans-serif'],
+                    'inter': ['"Inter"', 'sans-serif'],
+                },
+                colors: {
+                    // === "OPTION 2" BUDDLE PALETTE ===
+                    'buddle': {
+                        'orange': '#FF6B2E',         // Link & Gradient
+                        'yellow-orange': '#FFC300', // Gradient
+                        'green': '#8EE000',         // Highlight
+                        'yellow': '#FDEE00',
+                        'blue': '#1E90FF',
+                        'purple': '#7B2CBF',
+                    },
+
+                    // === SEMANTIC COLORS MAPPED TO "OPTION 2" ===
+                    'sage': '#8EE000',           // UPDATED: Was old green, now Buddle Green (Highlight)
+                    'terracotta': '#FF6B2E',     // UPDATED: Was old terracotta, now Buddle Red-Orange (Links)
+                    'beige': '#E8D7B2',          // Kept as-is for PDF section
+                    'button-gold': '#FF6B2E',    // UPDATED: Fallback for gradient
+                    'button-gold-dark': '#E65C22', // UPDATED: Darker orange
+                    'button-text': '#333333',    // UPDATED: Dark text for better contrast on yellow gradient
+                    
+                    // Base colors for text and backgrounds
+                    'base-bg': '#FFFFFF',        // UPDATED: Option 2 White
+                    'base-text': '#333333',      // UPDATED: Option 2 Dark Gray
+                    'dark-bg': '#1A1A1A',        // Kept as-is
+                    'dark-card': '#2A2A2A',       // Kept as-is
+                },
+                borderRadius: {
+                    '2xl': '1.25rem',
+                    '3xl': '1.75rem',
+                    '4xl': '2.5rem',
+                },
+                keyframes: {
+                    'sprout': {
+                        '0%, 100%': { transform: 'scale(1)' },
+                        '50%': { transform: 'scale(1.3) rotate(10deg)' },
+                    },
+                    'fadeIn': {
+                        'from': { opacity: '0', transform: 'translateY(10px)' },
+                        'to': { opacity: '1', transform: 'translateY(0)' },
+                    },
+                    'accordion-open': {
+                        from: { height: '0' },
+                        to: { height: 'var(--radix-accordion-content-height)' },
+                    },
+                    'accordion-close': {
+                        from: { height: 'var(--radix-accordion-content-height)' },
+                        to: { height: '0' },
+                    },
+                },
+                animation: {
+                    'sprout': 'sprout 0.3s ease-in-out',
+                    'fadeIn': 'fadeIn 0.5s ease-out forwards',
+                    'accordion-open': 'accordion-open 0.2s ease-out',
+                    'accordion-close': 'accordion-close 0.2s ease-out',
+                }
+            }
+        }
+    }
+</script>
+    
+    <!-- 4. Link to Custom Stylesheet --><link rel="stylesheet" href="style.css">
+
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Header --><header class="sticky top-0 z-50 bg-base-bg/90 backdrop-blur-lg shadow-sm">
+        <nav class="container mx-auto max-w-6xl px-4 py-4 flex justify-between items-center">
+            <!-- Logo --><a href="#" class="text-3xl font-baloo font-bold text-base-text">
+                Eco-Tech Toys
+            </a>
+            
+            <!-- Desktop Nav --><ul class="hidden md:flex items-center space-x-6 text-base-text font-medium">
+                <li><a href="#bots" class="hover:text-terracotta transition-colors">Our Bots</a></li>
+                <li><a href="#materials" class="hover:text-terracotta transition-colors">Our Materials</a></li>
+                <li><a href="#pdf" class="hover:text-terracotta transition-colors">Get DIY PDF</a></li>
+                <li><a href="#faq" class="hover:text-terracotta transition-colors">FAQ</a></li>
+                <li><a href="#footer" class="hover:text-terracotta transition-colors">Contact</a></li>
+            </ul>
+            
+            <!-- Mobile Menu Toggle --><button id="menu-toggle" class="md:hidden text-base-text hover:text-terracotta">
+                <!-- Custom "Leaf" Icon --><svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 12h18"></path>
+                    <path d="M17.6 7c-2.3 0-3.3 2.1-5.6 2.1S8.9 7 6.4 7"></path>
+                    <path d="M17.6 17c-2.3 0-3.3-2.1-5.6-2.1s-3.3 2.1-5.6 2.1"></path>
+                </svg>
+            </button>
+        </nav>
+        
+        <!-- Mobile Menu --><div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-base-bg shadow-lg -translate-x-full">
+            <ul class="flex flex-col space-y-4 p-5 text-base-text font-medium">
+                <li><a href="#bots" class="hover:text-terracotta transition-colors">Our Bots</a></li>
+                <li><a href="#materials" class="hover:text-terracotta transition-colors">Our Materials</a></li>
+                <li><a href="#pdf" class="hover:text-terracotta transition-colors">Get DIY PDF</a></li>
+                <li><a href="#faq" class="hover:text-terracotta transition-colors">FAQ</a></li>
+                <li><a href="#footer" class="hover:text-terracotta transition-colors">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content --><main>
+        <!-- Hero Section --><section class="container mx-auto max-w-6xl px-4 py-16 md:py-24 overflow-hidden">
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <!-- Text Content --><div class="md:w-1/2 text-center md:text-left">
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-baloo font-extrabold leading-tight" style="color: #FF6B2E;">
+                        Smart Toys<br>Kind to Planet.
+                    </h1>
+                    <p class="mt-4 text-lg text-base-text max-w-md mx-auto md:mx-0">
+                        Educational companions made from natural waste materials.
+                    </p>
+                    <a href="#bots" 
+                       class="btn-playful inline-block text-lg font-baloo font-bold px-8 py-3 rounded-full shadow-lg mt-8 transition-all duration-300"
+                       style="background-image: linear-gradient(to right, #FF6B2E, #FFC300); color: #333333;">
+                        Meet the Bots
+                    </a>
+                </div>
+                
+                <!-- Image Content --><div class="md:w-1/2 relative mt-8 md:mt-0">
+                    <!-- Background "Blob" Shapes --><div class="absolute -top-10 -right-10 w-72 h-72 bg-sage/30 rounded-full blur-3xl opacity-50"></div>
+                    <div class="absolute -bottom-10 -left-10 w-80 h-80 bg-terracotta/30 rounded-full blur-3xl opacity-50"></div>
+                    
+                    <img src="https://placehold.co/500x500/E8D7B2/333333?text=Namma+Bot" 
+                         alt="Namma Bot Eco-Friendly Toy" 
+                         class="relative w-full max-w-md mx-auto rounded-3xl shadow-xl z-10 transform -rotate-3 transition-transform duration-300 hover:rotate-0 hover:scale-105">
+                </div>
+            </div>
+        </section>
+
+        <!-- "Meet the Bots" Section (RE-ADDED) --><section id="bots" class="py-20">
+            <div class="container mx-auto max-w-6xl px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-baloo font-bold">Meet the Bots</h2>
+                    <p class="mt-2 text-lg text-base-text max-w-2xl mx-auto">
+                        Our first collection of smart, sustainable companions.
+                    </p>
+                </div>
+                
+                <!-- Product Card Grid --><div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+                    
+                    <!-- Card 1: Bubba & Charlie --><div class="flex flex-col bg-white rounded-3xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                        <img src="https://placehold.co/400x300/FEF3C7/92400E?text=Bubba+&+Charlie" alt="Bubba Bot and Charlie Bot" class="w-full h-72 object-cover">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-bold text-gray-900">Bubba & Charlie</h3>
+                            <p class="mt-2 text-base text-gray-700 flex-grow">
+                                For Numeracy, Alphabet, Language Speaking, Storytelling, and Rhymes.
+                            </p>
+                            <span class="mt-4 inline-block bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full self-start">Made with Rice Husks</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 2: Namma Bot --><div class="flex flex-col bg-white rounded-3xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                        <img src="https://placehold.co/400x300/FFEDD5/9A3412?text=Namma+Bot" alt="Namma Bot" class="w-full h-72 object-cover">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-bold text-gray-900">Namma Bot</h3>
+                            <p class="mt-2 text-base text-gray-700 flex-grow">
+                                Interactive companions that share cultural stories and songs.
+                            </p>
+                            <span class="mt-4 inline-block bg-orange-100 text-orange-800 text-sm font-medium px-3 py-1 rounded-full self-start">Made with Coffee Husks</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Kili Bot --><div class="flex flex-col bg-white rounded-3xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                        <img src="https://placehold.co/400x300/D1FAE5/065F46?text=Kili+Bot" alt="Kili Bot" class="w-full h-72 object-cover">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-bold text-gray-900">Kili Bot</h3>
+                            <p class="mt-2 text-base text-gray-700 flex-grow">
+                                Responds to touch with music, nature sounds, and gentle lights.
+                            </p>
+                            <span class="mt-4 inline-block bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full self-start">Made with Raggi Husks</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- "About the Materials and Process" Section (RE-ADDED & LIGHT THEME) --><section id="materials" class="py-24 text-base-text">
+            <div class="container mx-auto max-w-6xl px-4">
+                <h2 class="text-4xl font-baloo font-bold mb-12 text-base-text text-center">
+                    About the Materials and Process
+                </h2>
+                <div class="flex flex-col lg:flex-row gap-12">
+                    <!-- Left Column: Description & Features --><div class="lg:w-1/2">
+                        
+                        <p class="text-lg leading-relaxed mb-6 text-gray-700">
+                            We create innovative toys that inspire learning and play while protecting the planet. Every toy is crafted from sustainable materials like rice, coffee, and ragi husks, transforming agricultural byproducts into beautiful, child-safe learning tools.
+                        </p>
+                        <ul class="space-y-4 text-lg">
+                            <li class="flex items-start">
+                                <svg class="w-7 h-7 flex-shrink-0 mr-3 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span class="text-gray-700">100% biodegradable and safe for children</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-7 h-7 flex-shrink-0 mr-3 text-button-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                                <span class="text-gray-700">Designed with embedded learning technology</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-7 h-7 flex-shrink-0 mr-3 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span class="text-gray-700">Sourced from renewable, locally available materials</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Right Column: Material Cards --><div class="lg:w-1/2 grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Rice Husk Card --><div class="bg-white rounded-2xl p-6 text-center shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+                            <div class="w-20 h-20 rounded-full bg-sage/20 flex items-center justify-center mx-auto mb-4">
+                                <img src="https://placehold.co/60x60/8EE000/333333?text=RH" alt="Rice Husk Icon" class="w-12 h-12 rounded-full">
+                            </div>
+                            <h3 class="text-xl font-baloo font-semibold text-base-text mb-2">Rice Husk</h3>
+                            <p class="text-sm text-gray-600">Rice husks are durable and naturally resistant to moisture, making them perfect for long-lasting toys.</p>
+                        </div>
+                        <!-- Coffee Husk Card --><div class="bg-white rounded-2xl p-6 text-center shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+                            <div class="w-20 h-20 rounded-full bg-terracotta/20 flex items-center justify-center mx-auto mb-4">
+                                <img src="https://placehold.co/60x60/FF6B2E/FFFFFF?text=CH" alt="Coffee Husk Icon" class="w-12 h-12 rounded-full">
+                            </div>
+                            <h3 class="text-xl font-baloo font-semibold text-base-text mb-2">Coffee Husk</h3>
+                            <p class="text-sm text-gray-600">Coffee husks give our toys a unique texture and color, plus they reduce agricultural waste.</p>
+                        </div>
+                        <!-- Ragi Husk Card --><div class="bg-white rounded-2xl p-6 text-center shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+                            <div class="w-20 h-20 rounded-full bg-sage/20 flex items-center justify-center mx-auto mb-4">
+                                <img src="https://placehold.co/60x60/8EE000/333333?text=RgH" alt="Ragi Husk Icon" class="w-12 h-12 rounded-full">
+                            </div>
+                            <h3 class="text-xl font-baloo font-semibold text-base-text mb-2">Ragi Husk</h3>
+                            <p class="text-sm text-gray-600">Ragi husks are lightweight and strong, adding structure while keeping toys eco-friendly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- "Download PDF" Section --><section id="pdf" class="py-20 sm:py-24" style="background-color: #E8D7B2;">
+            <div class="max-w-2xl mx-auto px-6 lg:px-8 text-center">
+                <h2 class="text-4xl font-baloo font-bold tracking-tight sm:text-5xl" style="color: #FF6B2E;">Get Your Free DIY Toy Template!</h2>
+                <p class="mt-4 text-lg leading-8" style="color: #333333;">
+                    Build your first homemade toy! Enter your details to get the free, downloadable PDF guide sent straight to your inbox.
+                </p>
+                
+                <!-- Sign-up Form --><form class="mt-10 max-w-md mx-auto space-y-4">
+                    <div>
+                        <label for="name" class="sr-only">Name</label>
+                        <input id="name-pdf" name="name" type="text" autocomplete="name" required 
+                               class="w-full rounded-lg border border-terracotta/50 px-4 py-3 text-base text-gray-900 shadow-sm focus:border-terracotta focus:ring-2 focus:ring-inset focus:ring-terracotta" 
+                               placeholder="Enter your name">
+                    </div>
+                    <div>
+                        <label for="email-address" class="sr-only">Email address</label>
+                        <input id="email-address-pdf" name="email" type="email" autocomplete="email" required 
+                               class="w-full rounded-lg border border-terracotta/50 px-4 py-3 text-base text-gray-900 shadow-sm focus:border-terracotta focus:ring-2 focus:ring-inset focus:ring-terracotta" 
+                               placeholder="Enter your email">
+                    </div>
+                    <div>
+                        <label for="phone" class="sr-only">Phone number</label>
+                        <input id="phone-pdf" name="phone" type="tel" autocomplete="tel" required 
+                               class="w-full rounded-lg border border-terracotta/50 px-4 py-3 text-base text-gray-900 shadow-sm focus:border-terracotta focus:ring-2 focus:ring-inset focus:ring-terracotta" 
+                               placeholder="Enter your phone number">
+                    </div>
+                    <button type="submit" 
+                            class="btn-playful w-full rounded-lg px-5 py-3 text-base font-baloo font-bold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-300"
+                            style="background-image: linear-gradient(to right, #FF6B2E, #FFC300); color: #333333;">
+                        Download Now
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- FAQ Section --><section id="faq" class="container mx-auto max-w-4xl px-4 py-24">
+            <h2 class="text-4xl font-baloo font-bold text-center mb-12">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <!-- FAQ Item 1 --><div class="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                    <button class="faq-toggle flex justify-between items-center w-full px-6 py-4 text-left font-semibold text-lg text-base-text hover:bg-gray-50 focus:outline-none">
+                        <span>What materials are your toys made from?</span>
+                        <svg class="w-6 h-6 transform transition-transform duration-200 rotate-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+                    </button>
+                    <div class="faq-content overflow-hidden max-h-0 duration-200 ease-out transition-all">
+                        <p class="px-6 pb-4 text-gray-700">Our toys are crafted from sustainable agricultural byproducts such as rice husks, coffee husks, and ragi husks. These materials are 100% biodegradable, non-toxic, and child-safe.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 --><div class="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                    <button class="faq-toggle flex justify-between items-center w-full px-6 py-4 text-left font-semibold text-lg text-base-text hover:bg-gray-50 focus:outline-none">
+                        <span>How do your toys incorporate technology for learning?</span>
+                        <svg class="w-6 h-6 transform transition-transform duration-200 rotate-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+                    </button>
+                    <div class="faq-content overflow-hidden max-h-0 duration-200 ease-out transition-all">
+                        <p class="px-6 pb-4 text-gray-700">Our toys feature embedded, screen-free learning technology. This allows for interactive play that teaches numeracy, alphabet, language, storytelling, and cultural awareness through touch, sound, and light, sparking natural curiosity.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 --><div class="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                    <button class="faq-toggle flex justify-between items-center w-full px-6 py-4 text-left font-semibold text-lg text-base-text hover:bg-gray-50 focus:outline-none">
+                        <span>Are the toys durable and long-lasting?</span>
+                        <svg class="w-6 h-6 transform transition-transform duration-200 rotate-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+                    </button>
+                    <div class="faq-content overflow-hidden max-h-0 duration-200 ease-out transition-all">
+                        <p class="px-6 pb-4 text-gray-700">Yes, despite being made from natural materials, our toys are designed to be highly durable and resistant to typical wear and tear, including moisture. They are built to withstand enthusiastic play for years to come.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 --><div class="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                    <button class="faq-toggle flex justify-between items-center w-full px-6 py-4 text-left font-semibold text-lg text-base-text hover:bg-gray-50 focus:outline-none">
+                        <span>How do I clean Eco-Tech Toys?</span>
+                        <svg class="w-6 h-6 transform transition-transform duration-200 rotate-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+                    </button>
+                    <div class="faq-content overflow-hidden max-h-0 duration-200 ease-out transition-all">
+                        <p class="px-6 pb-4 text-gray-700">You can wipe our toys clean with a damp cloth and mild soap. Avoid submerging them in water or using harsh chemical cleaners to preserve the integrity of the natural materials and electronics.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer --><footer id="footer" class="bg-base-text text-base-bg/80 pt-16 pb-8">
+        <div class="container mx-auto max-w-6xl px-4 grid grid-cols-2 md:grid-cols-5 gap-8">
+            <!-- Column 1: Logo/Brand --><div>
+                <h4 class="text-2xl font-baloo text-white mb-4">Eco-Tech Toys</h4>
+                <p class="text-sm">Smart Toys, Kind to Planet.</p>
+            </div>
+            
+            <!-- Column 2: Explore --><div>
+                <h5 class="text-lg font-baloo text-white mb-3">Explore</h5>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#bots" class="hover:text-terracotta transition-colors">Our Bots</a></li>
+                    <li><a href="#materials" class="hover:text-terracotta transition-colors">Our Materials</a></li>
+                    <li><a href="#pdf" class="hover:text-terracotta transition-colors">DIY Template</a></li>
+                    <li><a href="#faq" class="hover:text-terracotta transition-colors">FAQ</a></li>
+                </ul>
+            </div>
+            
+            <!-- Column 3: Support --><div>
+                <h5 class="text-lg font-baloo text-white mb-3">Support</h5>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-terracotta transition-colors">FAQ</a></li>
+                    <li><a href="#" class="hover:text-terracotta transition-colors">Returns</a></li>
+                    <li><a href="#" class="hover:text-terracotta transition-colors">Shipping</a></li>
+                </ul>
+            </div>
+            
+            <!-- Column 4: Get in Touch (Relocated) --><div>
+                <h5 class="text-lg font-baloo text-white mb-3">Get in Touch</h5>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="tel:+1234567890" class="hover:text-terracotta transition-colors flex items-center"><svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>+1 (234) 567-890</a></li>
+                    <li><a href="mailto:hello@ecotech.toys" class="hover:text-terracotta transition-colors flex items-center"><svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>hello@ecotech.toys</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 5: Follow Us --><div>
+                <h5 class="text-lg font-baloo text-white mb-3">Follow Us</h5>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-terracotta transition-colors">Instagram</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+        
+        <div class="text-center text-sm text-base-bg/50 mt-12 border-t border-white/10 pt-8">
+            © 2025 Buddle. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- 5. Link to Custom JavaScript --><script src="script.js" defer></script>
+
+</body>
+</html>
