@@ -155,3 +155,73 @@ section[id] {
 #footer {
   scroll-margin-top: 80px; /* Adjust for sticky header height */
 }
+
+/* Full width background area */
+.launch-section {
+  width: 100%;
+  padding: 80px 20px;
+  background: #e8d4a3;
+  display: flex;
+  justify-content: center;
+}
+
+/* Centered form box */
+.launch-signup-box {
+  width: 100%;
+  max-width: 480px;
+  background: white;
+  padding: 32px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.08);
+}
+
+/* Title */
+.launch-signup-box h2 {
+  color: #ff6b2e;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* Subtext */
+.launch-signup-box p {
+  color: #444;
+  font-size: 15px;
+  margin: 15px 0;
+}
+
+/* Inputs */
+.launch-signup-box input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1.5px solid #ddd;
+  font-size: 15px;
+}
+
+/* Button */
+.launch-signup-box button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(to right, #ff7a00, #ffb800);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.launch-signup-box button:hover {
+  opacity: 0.9;
+}
+
+/* Message Text */
+.launch-msg {
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
